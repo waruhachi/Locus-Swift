@@ -1,5 +1,4 @@
 import Foundation
-// import libroot
 import roothide
 
 struct Preferences: Codable {

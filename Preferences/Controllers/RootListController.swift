@@ -1,9 +1,9 @@
 import Foundation
 import Preferences
-import libroot
+import roothide
 
 class RootListController: PSListController {
-	private let preferencesFilePath: String = jbRootPath(
+	private let preferencesFilePath: String = jbroot(
 		"/var/mobile/Library/Preferences/moe.waru.locus.preferences.plist"
 	)
 
