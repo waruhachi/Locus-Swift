@@ -1,0 +1,9 @@
+Package: moe.waru.locus
+Name: Locus
+Version: 0.0.1
+Architecture: iphoneos-arm
+Description: Location spoofing with per-app control and smart routing with support for jailed and jailbreak
+Maintainer: waruhachi
+Author: waruhachi
+Section: Tweaks
+Depends: mobilesubstrate
