@@ -3,7 +3,7 @@ BUNDLE_NAME = LocusPreferences
 $(BUNDLE_NAME)_FILES = $(wildcard Controllers/*.swift) $(wildcard ../Shared/*.swift)
 $(BUNDLE_NAME)_CFLAGS = -fobjc-arc
 $(BUNDLE_NAME)_FRAMEWORKS = UIKit
-$(BUNDLE_NAME)_PRIVATE_FRAMEWORKS = Preferences
+$(BUNDLE_NAME)_PRIVATE_FRAMEWORKS = Preferences BackBoardServices
 $(BUNDLE_NAME)_EXTRA_FRAMEWORKS = AltList
 $(BUNDLE_NAME)_INSTALL_PATH = /Library/PreferenceBundles
 
