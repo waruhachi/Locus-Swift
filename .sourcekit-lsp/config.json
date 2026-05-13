@@ -2,9 +2,9 @@
 	"fallbackBuildSystem": {
 		"swiftCompilerFlags": [
 			"-sdk",
-			"/Users/waruhachi/theos/sdks/iPhoneOS16.5.sdk",
+			"/Users/waruhachi/theos/sdks/iPhoneOS26.4.sdk",
 			"-target",
-			"arm64-apple-ios16.0",
+			"arm64-apple-ios26.4",
 			"-I",
 			"/Users/waruhachi/theos/vendor/headers",
 			"-I",
@@ -14,7 +14,7 @@
 			"-F",
 			"/Users/waruhachi/theos/vendor/lib",
 			"-F",
-			"/Users/waruhachi/theos/sdks/iPhoneOS16.5.sdk/System/Library/PrivateFrameworks",
+			"/Users/waruhachi/theos/sdks/iPhoneOS26.4.sdk/System/Library/PrivateFrameworks",
 			"-Xcc",
 			"-include",
 			"-Xcc",
