@@ -1,12 +1,7 @@
 import CydiaSubstrate
 import UIKit
 
-@objc
-private protocol SpringBoard {
-	@objc func applicationDidFinishLaunching(_ launching: SpringBoard)
-}
-
-private struct Hooks {
+private struct SpringBoardHook {
 	static var origIMP: IMP?
 
 	static func hook() {
@@ -29,25 +24,15 @@ private struct Hooks {
 
 @_cdecl("swift_init")
 func tweakInit() {
+	NSLog("[Locus] waru was here")
+
 	TweakPreferences.shared.loadPreferences()
 	let preferences = TweakPreferences.shared.preferences
 
-	NSLog("[Locus] Loaded preferences: \(preferences)")
-
-	if preferences.enabledApps.isEmpty {
-		NSLog("[Locus] No enabled apps, skipping hooks")
-		return
-	}
+	if preferences.enabledApps.isEmpty { return }
 
 	guard let currentBundleIdentifier = Bundle.main.bundleIdentifier else { return }
-	guard preferences.enabledApps.contains(currentBundleIdentifier) else {
-		NSLog(
-			"[Locus] App \(currentBundleIdentifier) is not enabled, skipping hooks"
-		)
-		return
-	}
+	guard preferences.enabledApps.contains(currentBundleIdentifier) else { return }
 
-	NSLog("[Locus] Enabling hooks for app: \(currentBundleIdentifier)")
-
-	Hooks.hook()
+	SpringBoardHook.hook()
 }
