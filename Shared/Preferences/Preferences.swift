@@ -1,5 +1,4 @@
 import Foundation
-import roothide
 
 struct Preferences: Codable {
 	var enabledApps: [String] = []
@@ -28,7 +27,7 @@ public final class TweakPreferences {
 
 	private(set) var preferences: Preferences = .init()
 
-	private let preferencesFilePath: String = jbroot(
+	private let preferencesFilePath: String = jbRootPath(
 		"/var/mobile/Library/Preferences/moe.waru.locus.preferences.plist"
 	)
 

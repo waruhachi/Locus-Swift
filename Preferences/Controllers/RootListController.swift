@@ -1,7 +1,6 @@
 import Foundation
 import Preferences
 import UIKit
-import roothide
 
 @_silgen_name("BKSTerminateApplicationForReasonAndReportWithDescription")
 private func BKSTerminateApplicationForReasonAndReportWithDescription(
