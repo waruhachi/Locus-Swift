@@ -3,7 +3,7 @@ export TARGET = iphone:clang:latest:14.0
 
 INSTALL_TARGET_PROCESSES = SpringBoard Preferences
 
-SUBPROJECTS += Tweak Preferences
+SUBPROJECTS += Tweak
 
 include $(THEOS)/makefiles/common.mk
 include $(THEOS_MAKE_PATH)/aggregate.mk
