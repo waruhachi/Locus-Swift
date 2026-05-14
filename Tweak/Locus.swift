@@ -1,23 +1,28 @@
 import CydiaSubstrate
 import UIKit
 
-private struct SpringBoardHook {
+private struct SBHomeScreenViewControllerHook {
 	static var origIMP: IMP?
 
 	static func hook() {
-		guard let targetClass = objc_getClass("SpringBoard") as? AnyClass else { return }
+		guard let targetClass = objc_getClass("SBHomeScreenViewController") as? AnyClass else {
+			return
+		}
 
-		typealias HookType = @convention(c) (SpringBoard, Selector, SpringBoard) -> Void
+		typealias HookType = @convention(c) (SBHomeScreenViewController, Selector) -> Void
 
-		let hook: HookType = { target, selector, launching in
+		let hook: HookType = { target, selector in
 			let orig = unsafeBitCast(Self.origIMP, to: HookType.self)
-			orig(target, selector, launching)
+			orig(target, selector)
 
-			NSLog("[Locus] SpringBoard did finish launching")
+			NSLog("[Locus] SBHomeScreenViewController did load")
+
+			guard let viewController = target as? UIViewController else { return }
+			NSLog("[Locus] ViewController: \(viewController)")
 		}
 
 		MSHookMessageEx(
-			targetClass, #selector(SpringBoard.applicationDidFinishLaunching(_:)),
+			targetClass, #selector(SBHomeScreenViewController.viewDidLoad),
 			unsafeBitCast(hook, to: IMP.self), &origIMP)
 	}
 }
@@ -26,13 +31,5 @@ private struct SpringBoardHook {
 func tweakInit() {
 	NSLog("[Locus] Initializing Tweak")
 
-	TweakPreferences.shared.loadPreferences()
-	let preferences = TweakPreferences.shared.preferences
-
-	if preferences.enabledApps.isEmpty { return }
-
-	guard let currentBundleIdentifier = Bundle.main.bundleIdentifier else { return }
-	guard preferences.enabledApps.contains(currentBundleIdentifier) else { return }
-
-	SpringBoardHook.hook()
+	SBHomeScreenViewControllerHook.hook()
 }
