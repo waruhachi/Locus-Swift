@@ -1,4 +1,5 @@
 import Foundation
+import libroot
 
 struct Preferences: Codable {
 	var enabledApps: [String] = []

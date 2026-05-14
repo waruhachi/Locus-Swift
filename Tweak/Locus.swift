@@ -24,7 +24,7 @@ private struct SpringBoardHook {
 
 @_cdecl("swift_init")
 func tweakInit() {
-	NSLog("[Locus] Initializing tweak")
+	NSLog("[Locus] Initializing Tweak")
 
 	TweakPreferences.shared.loadPreferences()
 	let preferences = TweakPreferences.shared.preferences

@@ -1,6 +1,7 @@
 import Foundation
 import Preferences
 import UIKit
+import libroot
 
 @_silgen_name("BKSTerminateApplicationForReasonAndReportWithDescription")
 private func BKSTerminateApplicationForReasonAndReportWithDescription(
@@ -8,7 +9,7 @@ private func BKSTerminateApplicationForReasonAndReportWithDescription(
 )
 
 class RootListController: PSListController {
-	private let preferencesFilePath: String = jbroot(
+	private let preferencesFilePath: String = jbRootPath(
 		"/var/mobile/Library/Preferences/moe.waru.locus.preferences.plist"
 	)
 
