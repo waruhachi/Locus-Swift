@@ -1,4 +1,5 @@
 import CydiaSubstrate
+import SwiftUI
 import UIKit
 
 private struct SBHomeScreenViewControllerHook {
@@ -18,7 +19,21 @@ private struct SBHomeScreenViewControllerHook {
 			NSLog("[Locus] SBHomeScreenViewController did load")
 
 			guard let viewController = target as? UIViewController else { return }
-			NSLog("[Locus] ViewController: \(viewController)")
+
+			let hosting = UIHostingController(rootView: TestView())
+			hosting.view.translatesAutoresizingMaskIntoConstraints = false
+			hosting.view.backgroundColor = .clear
+
+			viewController.addChild(hosting)
+			viewController.view.addSubview(hosting.view)
+			hosting.didMove(toParent: viewController)
+
+			NSLayoutConstraint.activate([
+				hosting.view.leadingAnchor.constraint(equalTo: viewController.view.leadingAnchor),
+				hosting.view.topAnchor.constraint(equalTo: viewController.view.topAnchor),
+				hosting.view.widthAnchor.constraint(equalToConstant: 40),
+				hosting.view.heightAnchor.constraint(equalToConstant: 30),
+			])
 		}
 
 		MSHookMessageEx(
